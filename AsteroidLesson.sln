@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsteroidLesson", "AsteroidLesson\AsteroidLesson.csproj", "{1214B977-6DC6-45A0-9316-19F1BE5054A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{A185D654-135B-4728-90EA-BBE89A1CBEB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{E480D8DA-3795-4D61-98F0-26429D11662F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1214B977-6DC6-45A0-9316-19F1BE5054A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1214B977-6DC6-45A0-9316-19F1BE5054A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1214B977-6DC6-45A0-9316-19F1BE5054A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1214B977-6DC6-45A0-9316-19F1BE5054A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A185D654-135B-4728-90EA-BBE89A1CBEB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A185D654-135B-4728-90EA-BBE89A1CBEB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A185D654-135B-4728-90EA-BBE89A1CBEB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A185D654-135B-4728-90EA-BBE89A1CBEB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E480D8DA-3795-4D61-98F0-26429D11662F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E480D8DA-3795-4D61-98F0-26429D11662F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E480D8DA-3795-4D61-98F0-26429D11662F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E480D8DA-3795-4D61-98F0-26429D11662F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6880BF6D-FADA-4578-9663-369E218657B0}
+	EndGlobalSection
+EndGlobal
