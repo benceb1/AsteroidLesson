@@ -39,6 +39,7 @@ namespace Server
                 Console.WriteLine("in listener");
                 listenerSocket.Listen(0);
                 _clients.Add(new ClientData(listenerSocket.Accept()));
+                NotifyGameStateChanged();
                 Console.WriteLine("connected");
             }
         }
@@ -89,6 +90,17 @@ namespace Server
                         clientData.clientSocket.Send(bytes);
                     }*/
                     break;
+            }
+        }
+
+        public static void NotifyGameStateChanged()
+        {
+            Packet packet = new Packet(PacketType.GameStateUpdate, "server");
+            packet.dataObject = GameState;
+            byte[] bytes = packet.ToBytes();
+            foreach (ClientData clientData in _clients)
+            {
+                clientData.clientSocket.Send(bytes);
             }
         }
     }

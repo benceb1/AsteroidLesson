@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace AsteroidLesson.Logic
 {
@@ -22,7 +24,7 @@ namespace AsteroidLesson.Logic
 
         public Point Position { get; set; }
         
-        public Vector Speed { get; set; }
+        public GameVector Speed { get; set; }
 
         public Ship()
         {
@@ -37,7 +39,7 @@ namespace AsteroidLesson.Logic
             double dy = Math.Sin(rad);
             dx = dx * 8;
             dy = dy * 8;
-            Speed = new Vector(dx,dy);
+            Speed = new GameVector((int)dx,(int)dy);
         }
 
         public void Move()

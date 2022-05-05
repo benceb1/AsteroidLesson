@@ -52,14 +52,21 @@ namespace AsteroidLesson.Renderer
             if (area.Width > 0 && area.Height > 0 && model != null)
             {
                 drawingContext.DrawRectangle(SpaceBrush, null, new Rect(0, 0, area.Width, area.Height));
-
-                drawingContext.PushTransform(new RotateTransform(model.Ship.Angle, model.Ship.Position.X + 25, model.Ship.Position.Y + 25));
-                drawingContext.DrawRectangle(ShipBrush, null, new Rect(model.Ship.Position.X,model.Ship.Position.Y, 50, 50));
-                drawingContext.Pop();
+                if (model.GameState != null)
+                {
+                    foreach (var item in model.GameState.Players)
+                    {
+                        drawingContext.PushTransform(new RotateTransform(item.Angle, item.Position.X + 25, item.Position.Y + 25));
+                        drawingContext.DrawRectangle(ShipBrush, null, new Rect(item.Position.X, item.Position.Y, 50, 50));
+                        drawingContext.Pop();
+                    }
+                }
+                
 
                 foreach (var item in model.Lasers)
                 {
-                    drawingContext.DrawEllipse(Brushes.Red, null, item.Center, 5, 5);
+                    Point p = new Point(item.Center.X, item.Center.Y);
+                    drawingContext.DrawEllipse(Brushes.Red, null, p, 5, 5);
                 }
             }
         }

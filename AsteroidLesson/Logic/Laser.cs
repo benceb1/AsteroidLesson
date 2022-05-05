@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+
 
 namespace AsteroidLesson.Logic
 {
@@ -11,9 +13,9 @@ namespace AsteroidLesson.Logic
     {
         public Point Center { get; set; }
 
-        public Vector Speed { get; set; }
+        public GameVector Speed { get; set; }
 
-        public Laser(Point center, Vector speed)
+        public Laser(Point center, GameVector speed)
         {
             Center = center;
             Speed = speed;

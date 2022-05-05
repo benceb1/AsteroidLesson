@@ -8,24 +8,33 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-
+    [Serializable]
     public class GameState
     {
-        BlockingCollection<Player> players;
-        BlockingCollection<Laser> lasers;
+
+        IList<Player> players;
+        IList<Laser> lasers;
 
         public Size GameArea { get; set; }
 
         public GameState()
         {
-            players = new BlockingCollection<Player>();
-            lasers = new BlockingCollection<Laser>();
+            players = new List<Player>();
+            lasers = new List<Laser>();
             GameArea = new Size(1920, 1080);
         }
 
         public void AddPlayer(Player player)
         {
             players.Add(player);
+        }
+
+        public IList<Player> Players
+        {
+            get
+            {
+                return players;
+            }
         }
     }
 }

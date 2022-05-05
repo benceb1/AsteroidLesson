@@ -32,10 +32,10 @@ namespace Common
             SetVectorFromAngle(Angle);
         }
 
-        public Player(string id)
+        public Player(string id, Point startPosition) : this()
         {
             Id = id;
-            SetVectorFromAngle(Angle);
+            Position = startPosition;
         }
 
         public void SetVectorFromAngle(double Angle)

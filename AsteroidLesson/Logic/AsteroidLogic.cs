@@ -1,10 +1,10 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace AsteroidLesson.Logic
 {
@@ -14,9 +14,13 @@ namespace AsteroidLesson.Logic
 
         public GameState GameState { get; set; }
 
+        public Client Client { get; set; }
+
         public List<Laser> Lasers { get; set; }
 
-        Size area;
+        public Point StartPosition { get; set; }
+
+        public static object key = new object();
 
         public Ship Ship { get; set; }
 
@@ -24,25 +28,18 @@ namespace AsteroidLesson.Logic
         {
             Lasers = new List<Laser>();
             Ship = new Ship();
-            GameState = new GameState();
-            Client client = new Client(DataManager);
+            
         }
-
-        public enum Controls
-        {
-            Left, Right, Shoot, Forward
-        }
-
    
-        public void SetupSizes(Size area)
+        public void SetupClient()
         {
-            this.area = area;
-
+            Client = new Client(DataManager);
         }
+
 
         public void SetupShipPosition(Point position)
         {
-            Ship.Position = position;
+            this.StartPosition = position;
         }
 
         public void Control(Controls control)
@@ -64,7 +61,10 @@ namespace AsteroidLesson.Logic
                 default:
                     break;
             }
-            Changed?.Invoke(this, null);
+            lock(key)
+            {
+                Changed?.Invoke(this, null);
+            }
         }
 
         private void NewShoot()
@@ -76,34 +76,37 @@ namespace AsteroidLesson.Logic
             dx = dx * 8;
             dy = dy * 8;
 
-            Lasers.Add(new Laser(new Point(Ship.Position.X + 25, Ship.Position.Y +25), new Vector(dx, dy)));
+            Lasers.Add(new Laser(new Point(Ship.Position.X + 25, Ship.Position.Y +25), new GameVector((int)dx, (int)dy)));
         }
 
         public void TimeStep()
         {
             for (int i = 0; i < Lasers.Count; i++)
             {
-                bool inside = Lasers[i].Move(area);
+                /*bool inside = Lasers[i].Move(area);
 
                 if (!inside)
                 {
                     Lasers.RemoveAt(i);
-                }
+                }*/
             }
-
             Changed?.Invoke(this, null);
         }
 
-        public static void DataManager(Packet packet)
+        public void DataManager(Packet packet)
         {
             switch (packet.packetType)
             {
                 case PacketType.Registration:
                     Console.WriteLine("Recieved a packet for registration! responding: ");
-                    string id = packet.Gdata[0];
+                    Client.ID = packet.Gdata[0];
                     break;
                 case PacketType.GameStateUpdate:
-
+                    GameState = (GameState)packet.dataObject;
+                    lock (key)
+                    {
+                        Changed?.Invoke(this, null);
+                    }
                     break;
             }
         }

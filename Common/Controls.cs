@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public enum PacketType
+    public enum Controls
     {
-        PositionChanged,
-        SetPlayer,
-        GameStateUpdate,
-        Registration,
-        Control
+        Left, Right, Shoot, Forward
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Common;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -30,12 +31,14 @@ namespace Server
 
         public void SendRegistrationPacket()
         {
+            GameState state = Server.GameState;
+            // Point startPoint = new Point((int)state.GameArea.Width / 2, (int)state.GameArea.Width / 2);
+            Point startPoint = new Point(500, 500);
+            Player player = new Player(id, startPoint);
+            state.AddPlayer(player);
+
             Packet p = new Packet(PacketType.Registration, "server");
             p.Gdata.Add(id);
-            GameState state = Server.GameState;
-            Player player = new Player(id);
-            state.AddPlayer(player);
-            p.dataObject = state;
             clientSocket.Send(p.ToBytes());
         }
     }

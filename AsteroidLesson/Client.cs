@@ -13,8 +13,7 @@ namespace AsteroidLesson
     public class Client
     {
         public Socket master;
-        public string name { get; set; }
-        public string id;
+        public string ID { get; set; }
 
         Action<Packet> DataManager;
 
